@@ -5,6 +5,7 @@
 COLOR1='\033[91m'
 COLOR2='\033[92m'
 COLOR3='\033[92m'
+OKBLUE='\033[94m'
 RESET='\e[0m'
 
 echo -e "$COLOR1 __________                __         ____  ___$RESET"
@@ -20,18 +21,17 @@ echo -e "$RESET"
 
 BRUTEX_INSTALL_DIR=/usr/share/brutex
 
-echo -e "$OKGREEN + -- --=[ This script will install brutex under $BRUTEX_INSTALL_DIR."
+echo -e "$OKBLUE[*]$RESET Installing brutex under $BRUTEX_INSTALL_DIR..."
 mkdir -p $BRUTEX_INSTALL_DIR 2> /dev/null
 cp -Rf $PWD/* $BRUTEX_INSTALL_DIR 
 cd $BRUTEX_INSTALL_DIR
-
-apt-get install nmap hydra dnsenum
-
+apt-get update
+apt-get install -y nmap hydra dnsenum
 mkdir loot 2> /dev/null
 chmod +x $BRUTEX_INSTALL_DIR/brutex
 rm -f /usr/bin/brutex 2> /dev/null
 ln -s /usr/share/brutex/brutex /usr/bin/brutex
-
-echo -e "$OKORANGE + -- --=[ Done!$RESET"
+cp -f $BRUTEX_INSTALL_DIR/brutex.desktop /usr/share/applications/ 2> /dev/null
+echo -e "$OKBLUE[*]$RESET Done! $RESET"
 
 
