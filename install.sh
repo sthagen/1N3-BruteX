@@ -1,6 +1,6 @@
 #!/bin/bash
 # Install script for BruteX
-#
+
 # VARS
 COLOR1='\033[91m'
 COLOR2='\033[92m'
@@ -19,21 +19,16 @@ echo -e "$COLOR1 + -- --=[ BruteX by @xer0dayz$RESET"
 echo -e "$COLOR1 + -- --=[ https://sn1persecurity.com$RESET"
 echo -e "$RESET"
 
-BRUTEX_INSTALL_DIR=/usr/share/brutex
+BRUTEX_INSTALL_DIR=$PREFIX/share/brutex
 
 echo -e "$OKBLUE[*]$RESET Installing brutex under $BRUTEX_INSTALL_DIR..."
 mkdir -p $BRUTEX_INSTALL_DIR 2> /dev/null
 cp -Rf $PWD/* $BRUTEX_INSTALL_DIR 
 cd $BRUTEX_INSTALL_DIR
-apt-get update
-apt-get install -y nmap hydra dnsenum
+pkg update
+pkg install -y nmap hydra dnsenum
 mkdir loot 2> /dev/null
 chmod +x $BRUTEX_INSTALL_DIR/brutex
-rm -f /usr/bin/brutex 2> /dev/null
-ln -s /usr/share/brutex/brutex /usr/bin/brutex
-cp -f $BRUTEX_INSTALL_DIR/brutex.desktop /usr/share/applications/ 2> /dev/null
-cp -f $BRUTEX_INSTALL_DIR/brutex.desktop /usr/share/applications/brutex.desktop 2> /dev/null
-cp -f $BRUTEX_INSTALL_DIR/brutex.desktop /usr/share/kali-menu/applications/brutex.desktop 2> /dev/null
+rm -f $PREFIX/bin/brutex 2> /dev/null
+ln -s $BRUTEX_INSTALL_DIR/brutex $PREFIX/bin/brutex
 echo -e "$OKBLUE[*]$RESET Done! $RESET"
-
-
