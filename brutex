@@ -1,48 +1,36 @@
 #!/bin/bash 
 # BruteX by @xer0dayz
 # http://sn1persecurity.com
-#
-# ABOUT:
-# BruteX is a simple bash script used to brute force all services on a target.
-#
-# INSTALL:
-# ./install.sh
-#
-# USAGE:
-# brutex <IP/hostname> <port>
-#
-# HYDRA SERVICES: 
-# asterisk cisco cisco-enable cvs ftp ftps http[s]-{head|get} http[s]-{get|post}-form http-proxy http-proxy-urlenum icq imap[s] irc ldap2[s] ldap3[-{cram|digest}md5][s] mssql mysql(v4) nntp oracle-listener oracle-sid pcanywhere pcnfs pop3[s] postgres rdp redis rexec rlogin rsh rtsp s7-300 sip smb smtp[s] smtp-enum snmp socks5 ssh sshkey teamspeak telnet[s] vmauthd vnc xmpp
 
 TARGET="$1"
 PORT="$2"
 VER="2.5"
-LOOT_DIR=/usr/share/brutex/loot
-FTP_USER_PASS="/usr/share/brutex/wordlists/ftp-default-userpass.txt"
-FTP_USERS="/usr/share/brutex/wordlists/ftp_defuser.lst"
-FTP_PASS="/usr/share/brutex/wordlists/ftp_defpass.lst"
-SSH_USER_PASS="/usr/share/brutex/wordlists/ssh-default-userpass.txt"
-SSH_USERS="/usr/share/brutex/wordlists/ssh_defuser.lst"
-SSH_PASS="/usr/share/brutex/wordlists/ssh_defpass.lst"
-SMTP_USERS="/usr/share/brutex/wordlists/smtp_defuser.lst"
-SMTP_PASS="/usr/share/brutex/wordlists/smtp_defpass.lst"
-POP_USERS="/usr/share/brutex/wordlists/pop_defuser.lst"
-POP_PASS="/usr/share/brutex/wordlists/pop_defpass.lst"
-TELNET_USER_PASS="/usr/share/brutex/wordlists/telnet-default-userpass.txt"
-TELNET_USERS="/usr/share/brutex/wordlists/telnet_defuser.lst"
-TELNET_PASS="/usr/share/brutex/wordlists/telnet_defpass.lst"
-SQL_USERS="/usr/share/brutex/wordlists/sql_defuser.lst"
-SQL_PASS="/usr/share/brutex/wordlists/sql_defpass.lst"
-MSSQL_USER_PASS="/usr/share/brutex/wordlists/mssql-default-userpass.txt"
-MYSQL_USER_PASS="/usr/share/brutex/wordlists/mysql-default-userpass.txt"
-ORACLE_USER_PASS="/usr/share/brutex/wordlists/oracle-default-userpass.txt"
-POSTGRES_USER_PASS="/usr/share/brutex/wordlists/postgres-default-userpass.txt"
-WINDOWS_USER_LIST="/usr/share/brutex/wordlists/windows-users.txt"
-WINDOWS_USER_PASS="/usr/share/brutex/wordlists/windows-default-userpass.txt"
-USER_FILE="/usr/share/brutex/wordlists/simple-users.txt"
-PASS_FILE="/usr/share/brutex/wordlists/password.lst"
-SNMP_FILE="/usr/share/brutex/wordlists/snmp-strings.txt"
-VNC_FILE="/usr/share/brutex/wordlists/vnc-default-passwords.txt"
+LOOT_DIR=$PREFIX/share/brutex/loot
+FTP_USER_PASS="$PREFIX/share/brutex/wordlists/ftp-default-userpass.txt"
+FTP_USERS="$PREFIX/share/brutex/wordlists/ftp_defuser.lst"
+FTP_PASS="$PREFIX/share/brutex/wordlists/ftp_defpass.lst"
+SSH_USER_PASS="$PREFIX/share/brutex/wordlists/ssh-default-userpass.txt"
+SSH_USERS="$PREFIX/share/brutex/wordlists/ssh_defuser.lst"
+SSH_PASS="$PREFIX/share/brutex/wordlists/ssh_defpass.lst"
+SMTP_USERS="$PREFIX/share/brutex/wordlists/smtp_defuser.lst"
+SMTP_PASS="$PREFIX/share/brutex/wordlists/smtp_defpass.lst"
+POP_USERS="$PREFIX/share/brutex/wordlists/pop_defuser.lst"
+POP_PASS="$PREFIX/share/brutex/wordlists/pop_defpass.lst"
+TELNET_USER_PASS="$PREFIX/share/brutex/wordlists/telnet-default-userpass.txt"
+TELNET_USERS="$PREFIX/share/brutex/wordlists/telnet_defuser.lst"
+TELNET_PASS="$PREFIX/share/brutex/wordlists/telnet_defpass.lst"
+SQL_USERS="$PREFIX/share/brutex/wordlists/sql_defuser.lst"
+SQL_PASS="$PREFIX/share/brutex/wordlists/sql_defpass.lst"
+MSSQL_USER_PASS="$PREFIX/share/brutex/wordlists/mssql-default-userpass.txt"
+MYSQL_USER_PASS="$PREFIX/share/brutex/wordlists/mysql-default-userpass.txt"
+ORACLE_USER_PASS="$PREFIX/share/brutex/wordlists/oracle-default-userpass.txt"
+POSTGRES_USER_PASS="$PREFIX/share/brutex/wordlists/postgres-default-userpass.txt"
+WINDOWS_USER_LIST="$PREFIX/share/brutex/wordlists/windows-users.txt"
+WINDOWS_USER_PASS="$PREFIX/share/brutex/wordlists/windows-default-userpass.txt"
+USER_FILE="$PREFIX/share/brutex/wordlists/simple-users.txt"
+PASS_FILE="$PREFIX/share/brutex/wordlists/password.lst"
+SNMP_FILE="$PREFIX/share/brutex/wordlists/snmp-strings.txt"
+VNC_FILE="$PREFIX/share/brutex/wordlists/vnc-default-passwords.txt"
 HTTP_LOCATION="/"
 THREADS="10"
 COLOR1='\033[91m'
